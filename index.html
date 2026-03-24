@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday JEEYA! 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ── ROOT ── */
+:root{
+  --bg0:#05030e;
+  --bg1:#130726;
+  --p1:#ff4da6;
+  --p2:#ffcc00;
+  --p3:#00e5ff;
+  --p4:#9c27b0;
+  --p5:#ff6b35;
+  --p6:#39ff14;
+  --fun:'Pacifico',cursive;
+  --ice:'Dancing Script',cursive;
+  --body:'Quicksand',sans-serif;
+}
+
+html,body{
+  width:100%;height:100%;
+  overflow:hidden;
+  background:var(--bg0);
+  color:#fff;
+  font-family:var(--body);
+  transition:background 1.4s ease;
+  cursor:none;
+}
+body.lit{background:var(--bg1)}
+
+/* ── CANVASES ── */
+canvas{position:fixed;inset:0;pointer-events:none}
+#cCursor{z-index:600}
+#cFw    {z-index:280}
+#cConf  {z-index:285}
+
+/* ── STARS ── */
+.star{
+  position:fixed;border-radius:50%;background:#fff;
+  pointer-events:none;z-index:1;
+  animation:twinkle ease-in-out infinite;
+}
+@keyframes twinkle{
+  0%,100%{opacity:.1;transform:scale(1)}
+  50%    {opacity:.9;transform:scale(1.7)}
+}
+
+/* ══════════════════════════════════
+   BUTTON
+══════════════════════════════════ */
+#btnWrap{
+  position:fixed;bottom:40px;left:50%;
+  transform:translateX(-50%);z-index:300;
+  transition:opacity .5s;
+}
+#btn{
+  display:flex;align-items:center;gap:10px;
+  padding:15px 40px;border:none;border-radius:50px;
+  font-family:var(--body);font-size:1.05rem;font-weight:700;
+  letter-spacing:.05em;cursor:pointer;
+  background:linear-gradient(135deg,var(--p1),var(--p4));
+  color:#fff;
+  box-shadow:0 4px 24px rgba(255,77,166,.55);
+  animation:pulse 2.4s ease-in-out infinite;
+  transition:transform .15s;
+}
+#btn:hover{transform:scale(1.07)}
+#btn:active{transform:scale(.95)}
+.bi{font-size:1.35rem}
+@keyframes pulse{
+  0%,100%{box-shadow:0 4px 24px rgba(255,77,166,.4)}
+  50%    {box-shadow:0 6px 36px rgba(255,77,166,.8),0 0 0 12px rgba(255,77,166,.06)}
+}
+
+/* ══════════════════════════════════
+   BULBS
+══════════════════════════════════ */
+#bulbs{
+  position:fixed;top:0;left:0;right:0;height:80px;
+  display:none;z-index:50;pointer-events:none;
+}
+#bulbs.on{display:block}
+.wire{
+  position:absolute;top:14px;left:0;right:0;height:3px;
+  background:linear-gradient(to right,#333,#555,#333);
+}
+#bulbList{
+  position:absolute;top:0;left:0;right:0;
+  list-style:none;display:flex;justify-content:space-evenly;padding:0 12px;
+}
+#bulbList li{display:flex;flex-direction:column;align-items:center;animation:flicker 2s ease-in-out infinite}
+#bulbList li:nth-child(3n+1){animation-delay:0s}
+#bulbList li:nth-child(3n+2){animation-delay:.6s}
+#bulbList li:nth-child(3n)  {animation-delay:1.2s}
+.bsock{width:9px;height:12px;background:#555;border-radius:2px}
+.bglass{
+  width:24px;height:32px;border-radius:50% 50% 38% 38%;
+  position:relative;filter:drop-shadow(0 0 8px currentColor);
+}
+.bglass::after{
+  content:'';position:absolute;top:17%;left:18%;
+  width:26%;height:26%;background:rgba(255,255,255,.5);border-radius:50%;
+}
+@keyframes flicker{
+  0%,100%{opacity:1}10%{opacity:.5}20%{opacity:1}78%{opacity:1}85%{opacity:.4}93%{opacity:1}
+}
+
+/* ══════════════════════════════════
+   BANNER
+══════════════════════════════════ */
+#banner{
+  position:fixed;top:80px;left:0;right:0;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  opacity:0;transform:translateY(-24px);
+  transition:opacity .8s,transform .8s;
+  pointer-events:none;z-index:45;
+}
+#banner.on{opacity:1;transform:translateY(0)}
+#bunting{display:flex;width:100%;justify-content:center;flex-wrap:wrap}
+.flag{
+  width:0;height:0;
+  border-left:16px solid transparent;border-right:16px solid transparent;
+  border-top:22px solid;margin:0 2px;
+  animation:sway 3s ease-in-out infinite;
+}
+.flag:nth-child(odd){animation-delay:.3s}
+.flag:nth-child(3n){animation-delay:.9s}
+@keyframes sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+#bannerText{
+  font-family:var(--fun);
+  font-size:clamp(1.3rem,4vw,2.4rem);
+  background:linear-gradient(90deg,var(--p1),var(--p2),var(--p3),var(--p4),var(--p1));
+  background-size:300%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 3s linear infinite;
+}
+@keyframes shimmer{to{background-position:300%}}
+
+/* ══════════════════════════════════
+   BALLOONS
+══════════════════════════════════ */
+#balloons{position:fixed;inset:0;pointer-events:none;z-index:40}
+.balloon{
+  position:absolute;bottom:-160px;
+  display:flex;flex-direction:column;align-items:center;
+  animation:floatUp linear forwards;
+}
+.bBody{
+  width:56px;height:70px;border-radius:50% 50% 44% 44%;position:relative;
+}
+.bBody::before{
+  content:'';position:absolute;top:16%;left:17%;
+  width:24%;height:24%;background:rgba(255,255,255,.42);border-radius:50%;
+}
+.bBody::after{
+  content:'';position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);
+  width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;
+  border-top:10px solid;
+}
+.bKnot{width:7px;height:7px;border-radius:50%;margin-top:-1px}
+.bStr{width:1px;height:70px;background:rgba(255,255,255,.25)}
+@keyframes floatUp{
+  0%  {transform:translateY(0) rotate(0deg);opacity:1}
+  85% {opacity:1}
+  100%{transform:translateY(-115vh) rotate(10deg);opacity:0}
+}
+
+/* ══════════════════════════════════
+   CAKE SCENE WRAPPER
+══════════════════════════════════ */
+#cakeScene{
+  position:fixed;
+  left:50%;top:50%;
+  transform:translate(-50%,-48%) scale(.3);
+  opacity:0;pointer-events:none;
+  z-index:60;
+  transition:opacity .7s, transform .8s cubic-bezier(.34,1.56,.64,1);
+}
+#cakeScene.on{
+  opacity:1;pointer-events:auto;
+  transform:translate(-50%,-48%) scale(1);
+}
+
+/* ══════════════════════════════════
+   CAKE  (top → bottom in DOM)
+══════════════════════════════════ */
+#cake{
+  display:flex;flex-direction:column;align-items:center;
+  position:relative;
+}
+
+/* — candles row (topmost) — */
+.candleRow{display:flex;gap:8px;margin-bottom:0;position:relative;z-index:10}
+.candle{
+  display:flex;flex-direction:column;align-items:center;
+  width:13px;
+  pointer-events:none; /* default off; JS adds .interactive to enable */
+}
+.candleBody{width:12px;height:36px;border-radius:3px;flex-shrink:0}
+.c1 .candleBody{background:linear-gradient(#ff6b6b,#c0392b)}
+.c2 .candleBody{background:linear-gradient(#f9ca24,#e67e22)}
+.c3 .candleBody{background:linear-gradient(#a29bfe,#6c5ce7)}
+.c4 .candleBody{background:linear-gradient(#55efc4,#00b894)}
+.c5 .candleBody{background:linear-gradient(#fd79a8,#e84393)}
+.flame{
+  width:11px;height:17px;
+  background:radial-gradient(ellipse at 50% 100%,#fff700 0%,#ff8c00 55%,transparent 100%);
+  border-radius:50% 50% 30% 30%;
+  filter:drop-shadow(0 0 5px #ffcc00);
+  animation:cFlicker .55s ease-in-out infinite alternate;
+  flex-shrink:0;
+  pointer-events:none;
+}
+.c1 .flame{animation-delay:.00s}.c2 .flame{animation-delay:.11s}
+.c3 .flame{animation-delay:.22s}.c4 .flame{animation-delay:.08s}
+.c5 .flame{animation-delay:.19s}
+@keyframes cFlicker{
+  from{transform:scaleY(1) skewX(0);opacity:1}
+  to  {transform:scaleY(.7) skewX(7deg);opacity:.8}
+}
+
+/* — tiers (narrow → wide down the DOM) — */
+.tier{
+  position:relative;border-radius:7px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.tTop{
+  width:115px;height:52px;z-index:4;
+  background:linear-gradient(180deg,#ce93d8,#9c27b0);
+  box-shadow:0 3px 12px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.tMid{
+  width:162px;height:58px;z-index:3;
+  background:linear-gradient(180deg,#ef9a9a,#e53935);
+  box-shadow:0 3px 12px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2);
+}
+.tBot{
+  width:212px;height:64px;z-index:2;
+  background:linear-gradient(180deg,#ffd54f,#f9a825);
+  box-shadow:0 4px 14px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2);
+}
+.plate{
+  width:230px;height:14px;z-index:1;
+  background:linear-gradient(180deg,#f0f0f0,#bbb);
+  border-radius:50%;
+  box-shadow:0 6px 18px rgba(0,0,0,.5);
+  flex-shrink:0;
+}
+
+/* — frosting drips between tiers — */
+.drips{
+  position:absolute;bottom:-11px;left:0;right:0;
+  display:flex;justify-content:space-evenly;
+  pointer-events:none;z-index:20;
+}
+.drip{
+  width:13px;background:rgba(255,255,255,.75);
+  border-radius:0 0 8px 8px;flex-shrink:0;
+}
+
+/* — JEEYA name in icing — */
+.cakeName{
+  font-family:var(--ice);
+  font-size:1.55rem;font-weight:700;
+  color:#fff;
+  text-shadow:0 0 8px rgba(255,160,255,.9),0 0 18px rgba(255,100,200,.6);
+  letter-spacing:.06em;position:relative;z-index:15;
+  animation:nameGlow 2.1s ease-in-out infinite alternate;
+}
+@keyframes nameGlow{
+  from{text-shadow:0 0 6px rgba(255,160,255,.7),0 0 14px rgba(255,100,200,.4)}
+  to  {text-shadow:0 0 14px rgba(255,210,255,1),0 0 30px rgba(255,140,220,.9),0 0 44px rgba(200,0,180,.4)}
+}
+
+/* — polka dots — */
+.dots{display:flex;gap:10px;align-items:center;position:absolute}
+.dot{
+  width:9px;height:9px;border-radius:50%;
+  background:rgba(255,255,255,.5);
+  box-shadow:0 0 4px rgba(255,255,255,.6);
+}
+
+/* ── cake shake on cut ── */
+@keyframes shake{
+  0%,100%{transform:translateX(0)}
+  15%{transform:translateX(-8px) rotate(-1.5deg)}
+  30%{transform:translateX(8px)  rotate(1.5deg)}
+  45%{transform:translateX(-5px) rotate(-1deg)}
+  60%{transform:translateX(5px)  rotate(1deg)}
+  75%{transform:translateX(-3px)}
+}
+#cake.shaking{animation:shake .55s ease forwards}
+
+/* ── blown flame ── */
+.flame{
+  transition: transform .35s ease, opacity .35s ease;
+}
+.flame.blown{
+  animation: none !important;   /* stop cFlicker fighting transform */
+  transform: scale(0) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ── candle becomes the tap target ── */
+.candle.interactive{
+  cursor: pointer;
+  pointer-events: auto !important;
+  /* large invisible tap zone so it's easy to hit */
+  padding: 18px 14px;
+  margin: -18px -14px;
+  position: relative;
+  z-index: 30;
+}
+/* pulsing glow ring so she knows it's tappable */
+.candle.interactive .flame{
+  filter: drop-shadow(0 0 9px #ffcc00) drop-shadow(0 0 18px #ff8c00);
+  animation: cFlicker .55s ease-in-out infinite alternate,
+             flamePulse 1s ease-in-out infinite;
+}
+@keyframes flamePulse{
+  0%,100%{ filter: drop-shadow(0 0 6px #ffcc00) drop-shadow(0 0 12px #ff8c00); }
+  50%    { filter: drop-shadow(0 0 18px #fff700) drop-shadow(0 0 30px #ff4400); }
+}
+
+/* ── instruction notes ── */
+#blowNote {
+  position:absolute;
+  bottom:-60px;
+  left:50%;
+  transform:translateX(-50%) translateY(12px);
+  background:rgba(255,255,255,.13);
+  border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(6px);
+  color:#fff;
+  font-family:var(--body);
+  font-size:.92rem;
+  font-weight:700;
+  padding:10px 20px;
+  border-radius:30px;
+  white-space:nowrap;
+  text-align:center;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .5s ease, transform .5s ease;
+  z-index:80;
+  box-shadow:0 4px 18px rgba(255,77,166,.35);
+}
+#blowNote.on {
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+.noteIcon { margin-right:6px; font-size:1.1rem; }
+
+/* ══════════════════════════════════
+   MEMORIES
+══════════════════════════════════ */
+#memories{
+  position:fixed;inset:0;
+  background:rgba(6,2,18,.9);backdrop-filter:blur(8px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  z-index:200;opacity:0;pointer-events:none;
+  transition:opacity .7s;
+  padding:16px;
+}
+#memories.on{opacity:1;pointer-events:auto}
+#memClose{
+  position:absolute;top:16px;right:20px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.75);font-family:var(--body);font-size:.84rem;
+  padding:7px 16px;border-radius:20px;cursor:pointer;transition:background .2s;
+}
+#memClose:hover{background:rgba(255,255,255,.2)}
+#memTitle{
+  font-family:var(--fun);font-size:clamp(1.2rem,3vw,1.85rem);
+  background:linear-gradient(90deg,var(--p2),var(--p1));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+#memGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;width:min(760px,95vw);
+}
+@media(max-width:580px){#memGrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:360px){#memGrid{grid-template-columns:1fr}}
+
+.mCard{
+  background:var(--bg,#fff);border-radius:12px;
+  padding:0 0 14px;text-align:center;
+  box-shadow:0 8px 22px rgba(0,0,0,.35);
+  transform:translate(var(--fx,0),var(--fy,0)) rotate(var(--r,0deg)) scale(.8);
+  opacity:0;
+  overflow:hidden;
+  transition:transform .55s cubic-bezier(.34,1.56,.64,1) var(--d,0s),opacity .45s ease var(--d,0s);
+}
+.mCard.on{transform:rotate(var(--r,0deg)) scale(1);opacity:1}
+.mCard:hover{transform:rotate(var(--r,0deg)) scale(1.05)!important}
+
+/* ── photo slot at the top of each card ── */
+.mPhoto{
+  display:block;
+  width:100%;
+  height:130px;
+  object-fit:cover;
+  border-radius:10px 10px 0 0;
+  background:rgba(0,0,0,.12);
+}
+/* shown when no real src is provided yet */
+.mPhoto[src=""],
+.mPhoto:not([src]){
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(255,255,255,.08) 0px,
+    rgba(255,255,255,.08) 10px,
+    rgba(255,255,255,.15) 10px,
+    rgba(255,255,255,.15) 20px
+  );
+  position:relative;
+}
+
+.mCardBody{
+  padding:10px 13px 4px;
+}
+.mIcon{font-size:1.7rem;margin-bottom:5px;display:block;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.mCard p{font-size:.78rem;font-weight:600;line-height:1.5;color:rgba(20,5,40,.85)}
+#memHearts{font-size:1.5rem;letter-spacing:10px;animation:hb 1.9s ease-in-out infinite alternate}
+@keyframes hb{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+
+/* ══════════════════════════════════
+   FINALE
+══════════════════════════════════ */
+#finale{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  z-index:400;opacity:0;pointer-events:none;
+  transition:opacity .8s;
+}
+#finale.on{opacity:1}
+#fName{
+  font-family:var(--fun);
+  font-size:clamp(3.5rem,13vw,8.5rem);
+  background:linear-gradient(135deg,var(--p1),var(--p2),var(--p3),var(--p4));
+  background-size:300%;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 2.2s linear infinite,popBounce .9s cubic-bezier(.34,1.56,.64,1) forwards;
+  transform:scale(0);letter-spacing:.06em;
+}
+@keyframes popBounce{to{transform:scale(1) rotate(0deg)}}
+#fSub{
+  font-size:clamp(.85rem,2vw,1.1rem);font-weight:600;
+  color:rgba(255,255,255,.75);
+  opacity:0;transform:translateY(18px);
+  animation:fu .7s ease .5s forwards;
+}
+#fHbd{
+  font-family:var(--fun);font-size:clamp(2rem,6vw,3.8rem);
+  color:var(--p2);text-shadow:0 0 20px var(--p2),0 0 40px rgba(255,204,0,.5);
+  opacity:0;transform:scale(.7);
+  animation:pi .8s cubic-bezier(.34,1.56,.64,1) .9s forwards;
+}
+#fSparks{
+  font-size:1.6rem;letter-spacing:14px;
+  opacity:0;animation:fu .6s ease 1.4s forwards,hueRot 4s linear 1.4s infinite;
+}
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+@keyframes pi{to{opacity:1;transform:scale(1)}}
+@keyframes hueRot{to{filter:hue-rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- canvases -->
+<canvas id="cCursor"></canvas>
+<canvas id="cFw"></canvas>
+<canvas id="cConf"></canvas>
+
+<!-- bulbs -->
+<div id="bulbs">
+  <div class="wire"></div>
+  <ul id="bulbList"></ul>
+</div>
+
+<!-- banner -->
+<div id="banner">
+  <div id="bunting"></div>
+  <div id="bannerText">🎉 Happy Birthday JEEYA! 🎉</div>
+</div>
+
+<!-- balloons -->
+<div id="balloons"></div>
+
+<!-- cake scene -->
+<div id="cakeScene">
+
+  <!-- intact cake -->
+  <div id="cake">
+    <!-- 1. candles -->
+    <div class="candleRow">
+      <div class="candle c1"><div class="flame"></div><div class="candleBody"></div></div>
+      <div class="candle c2"><div class="flame"></div><div class="candleBody"></div></div>
+      <div class="candle c3"><div class="flame"></div><div class="candleBody"></div></div>
+      <div class="candle c4"><div class="flame"></div><div class="candleBody"></div></div>
+      <div class="candle c5"><div class="flame"></div><div class="candleBody"></div></div>
+    </div>
+
+    <!-- 2. top tier (narrowest) -->
+    <div class="tier tTop">
+      <span class="cakeName">JEEYA</span>
+      <div class="drips">
+        <div class="drip" style="height:16px"></div>
+        <div class="drip" style="height:12px"></div>
+        <div class="drip" style="height:18px"></div>
+        <div class="drip" style="height:11px"></div>
+        <div class="drip" style="height:14px"></div>
+      </div>
+    </div>
+
+    <!-- 3. mid tier -->
+    <div class="tier tMid">
+      <div class="dots">
+        <div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div>
+      </div>
+      <div class="drips">
+        <div class="drip" style="height:14px"></div>
+        <div class="drip" style="height:18px"></div>
+        <div class="drip" style="height:12px"></div>
+        <div class="drip" style="height:16px"></div>
+        <div class="drip" style="height:10px"></div>
+        <div class="drip" style="height:15px"></div>
+      </div>
+    </div>
+
+    <!-- 4. bottom tier (widest) -->
+    <div class="tier tBot">
+      <div class="dots">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <div class="dot"></div><div class="dot"></div>
+      </div>
+    </div>
+
+    <!-- 5. plate -->
+    <div class="plate"></div>
+  </div><!-- /#cake -->
+
+  <!-- Blow candles note -->
+  <div id="blowNote">
+    <span class="noteIcon">🕯️</span>
+    Touch each flame to blow it out!
+  </div>
+
+</div><!-- /#cakeScene -->
+
+<!-- memories -->
+<div id="memories">
+  <button id="memClose">✕  Skip to Finale</button>
+  <h2 id="memTitle">💛 A Little Note for JEEYA 💛</h2>
+  <div id="memGrid">
+    <div class="mCard" style="--bg:linear-gradient(135deg,#ff9a9e,#fad0c4);--r:-4deg;--fx:-100px;--fy:20px;--d:0s">
+      <!-- 📸 MEMORY 1: replace the src below with your image path/URL -->
+      <img class="mPhoto" src="Pic1.jpeg" alt="Memory 1">
+      <div class="mCardBody">
+        <span class="mIcon">☀️</span>
+        <p>Your smile alone can turn my worst day into a best day🫂.</p>
+      </div>
+    </div>
+    <div class="mCard" style="--bg:linear-gradient(135deg,#a1c4fd,#c2e9fb);--r:3deg;--fx:0px;--fy:-70px;--d:.15s">
+      <!-- 📸 MEMORY 2: replace the src below with your image path/URL -->
+      <img class="mPhoto" src="Pic2.jpeg" alt="Memory 2">
+      <div class="mCardBody">
+        <span class="mIcon">🌙</span>
+        <p>The late-night talks, the random laughs — I'd relive every single one.</p>
+      </div>
+    </div>
+    <div class="mCard" style="--bg:linear-gradient(135deg,#d4fc79,#96e6a1);--r:-2deg;--fx:100px;--fy:20px;--d:.3s">
+      <!-- 📸 MEMORY 3: replace the src below with your image path/URL -->
+      <img class="mPhoto" src="Pic3.jpeg" alt="Memory 3">
+      <div class="mCardBody">
+        <span class="mIcon">✨</span>
+        <p>You make ordinary moments feel worth remembering forever🫶.</p>
+      </div>
+    </div>
+    <div class="mCard" style="--bg:linear-gradient(135deg,#ffecd2,#fcb69f);--r:5deg;--fx:-70px;--fy:55px;--d:.45s">
+      <!-- 📸 MEMORY 4: replace the src below with your image path/URL -->
+      <img class="mPhoto" src="Pic4.jpeg" alt="Memory 4">
+      <div class="mCardBody">
+        <span class="mIcon">💫</span>
+        <p>Your kindness is a superpower you don't even know you carry🫠.</p>
+      </div>
+    </div>
+    <div class="mCard" style="--bg:linear-gradient(135deg,#e0c3fc,#8ec5fc);--r:-3deg;--fx:55px;--fy:-45px;--d:.6s">
+      <!-- 📸 MEMORY 5: replace the src below with your image path/URL -->
+      <img class="mPhoto" src="Pic5.jpeg" alt="Memory 5">
+      <div class="mCardBody">
+        <span class="mIcon">🎁</span>
+        <p>Knowing you is genuinely one of life's greatest gifts💝.</p>
+      </div>
+    </div>
+    <div class="mCard" style="--bg:linear-gradient(135deg,#fddb92,#d1fdff);--r:4deg;--fx:80px;--fy:45px;--d:.75s">
+      <!-- 📸 MEMORY 6: replace the src below with your image path/URL -->
+      <img class="mPhoto" src="Pic6.jpeg" alt="Memory 6">
+      <div class="mCardBody">
+        <span class="mIcon">🌸</span>
+        <p>Here's one of the most silly picture of yours, I love the most🙈.</p>
+      </div>
+    </div>
+  </div>
+  <div id="memHearts">💖 💛 💜 💙 💚 🧡</div>
+</div>
+
+<!-- finale -->
+<div id="finale">
+  <div id="fName">JEEYA</div>
+  <div id="fSub">May your each and every wish finally come true ✨🤞🏻</div>
+  <h1 id="fHbd">🎂 Happy Birthday! 🎂</h1>
+  <div id="fSparks">✦ ✦ ✦ ✦ ✦</div>
+</div>
+
+<!-- button -->
+<div id="btnWrap">
+  <button id="btn">
+    <span class="bi">💡</span>
+    <span id="bLabel">Turn on Lights</span>
+  </button>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   STAGE MACHINE
+════════════════════════════════════════════════════════ */
+const STEPS = [
+  { icon:'🎊', label:'Decorate!',        fn: doDecorate  },
+  { icon:'🎈', label:'Release Balloons', fn: doBalloons  },
+  { icon:'🎂', label:'Reveal the Cake',  fn: doRevealCake},
+];
+let step = 0;
+
+const btnWrap = document.getElementById('btnWrap');
+const btn     = document.getElementById('btn');
+const bLabel  = document.getElementById('bLabel');
+const bIcon   = btn.querySelector('.bi');
+
+btn.addEventListener('click', () => {
+  if (step > STEPS.length) return; // later stages use their own one-shot listeners
+  if (step === 0) { doLights(); }
+  else            { STEPS[step - 1].fn(); }
+  step++;
+  if (step <= STEPS.length) {
+    bIcon.textContent  = STEPS[step-1].icon;
+    bLabel.textContent = STEPS[step-1].label;
+  } else {
+    btnWrap.style.opacity = '0';
+    setTimeout(() => btnWrap.style.display='none', 600);
+  }
+});
+
+/* ════════════════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', () => {
+  createStars();
+  initCursor();
+  initConfetti();
+  initFireworks();
+  sizeCanvases();
+});
+window.addEventListener('resize', sizeCanvases);
+
+function sizeCanvases(){
+  ['cCursor','cFw','cConf'].forEach(id=>{
+    const c=document.getElementById(id);
+    c.width=window.innerWidth; c.height=window.innerHeight;
+  });
+}
+
+/* ── stars ── */
+function createStars(){
+  for(let i=0;i<85;i++){
+    const d=document.createElement('div');
+    d.className='star';
+    const s=1+Math.random()*3;
+    Object.assign(d.style,{
+      width:s+'px',height:s+'px',
+      top:Math.random()*100+'%',
+      left:Math.random()*100+'%',
+      animationDuration:(2+Math.random()*4)+'s',
+      animationDelay:(Math.random()*5)+'s',
+    });
+    document.body.appendChild(d);
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   CUSTOM CURSOR + SPARKLE TRAIL
+════════════════════════════════════════════════════════ */
+function initCursor(){
+  const canvas=document.getElementById('cCursor');
+  const ctx=canvas.getContext('2d');
+  const sparks=[];
+  const COLS=['#ff4da6','#ffcc00','#00e5ff','#ff6b35','#a0ff00','#fff','#e040fb'];
+  let mx=window.innerWidth/2, my=window.innerHeight/2;
+
+  document.addEventListener('mousemove', e=>{
+    mx=e.clientX; my=e.clientY;
+    for(let i=0;i<3;i++){
+      sparks.push({
+        x:mx+(Math.random()-.5)*14,
+        y:my+(Math.random()-.5)*14,
+        r:1.5+Math.random()*3,
+        col:COLS[Math.floor(Math.random()*COLS.length)],
+        vx:(Math.random()-.5)*2.5,
+        vy:-1-Math.random()*2.5,
+        life:1,
+      });
+    }
+  });
+
+  (function loop(){
+    requestAnimationFrame(loop);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    // draw cursor dot
+    ctx.beginPath();
+    ctx.arc(mx,my,5,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,77,166,.9)';
+    ctx.shadowColor='#ff4da6'; ctx.shadowBlur=10;
+    ctx.fill(); ctx.shadowBlur=0;
+    // sparks
+    for(let i=sparks.length-1;i>=0;i--){
+      const s=sparks[i];
+      s.x+=s.vx; s.y+=s.vy; s.vy+=.06; s.life-=.032; s.r*=.97;
+      if(s.life<=0){sparks.splice(i,1);continue;}
+      ctx.save();
+      ctx.globalAlpha=s.life;
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=s.col; ctx.shadowColor=s.col; ctx.shadowBlur=5;
+      ctx.fill(); ctx.restore();
+    }
+  })();
+}
+
+/* ════════════════════════════════════════════════════════
+   CONFETTI
+════════════════════════════════════════════════════════ */
+let pieces=[];
+function initConfetti(){
+  const canvas=document.getElementById('cConf');
+  const ctx=canvas.getContext('2d');
+  const COLS=['#ff4da6','#ffcc00','#00e5ff','#9c27b0','#ff6b35','#39ff14','#fff','#ff1493'];
+  (function loop(){
+    requestAnimationFrame(loop);
+    if(!pieces.length)return;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(let i=pieces.length-1;i>=0;i--){
+      const p=pieces[i];
+      p.x+=p.vx; p.y+=p.vy; p.vy+=.09; p.a+=p.spin; p.life-=.005;
+      if(p.life<=0||p.y>canvas.height+20){pieces.splice(i,1);continue;}
+      ctx.save();
+      ctx.globalAlpha=Math.max(0,p.life);
+      ctx.translate(p.x,p.y); ctx.rotate(p.a);
+      ctx.fillStyle=p.col;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    }
+  })();
+}
+function burst(count, cx, cy){
+  const W=window.innerWidth;
+  for(let i=0;i<count;i++){
+    const COLS=['#ff4da6','#ffcc00','#00e5ff','#9c27b0','#ff6b35','#39ff14','#fff','#ff1493'];
+    const fromTop=(cx===undefined);
+    pieces.push({
+      x: fromTop ? Math.random()*W : cx+(Math.random()-.5)*50,
+      y: fromTop ? -10-Math.random()*60 : cy+(Math.random()-.5)*30,
+      w:5+Math.random()*9, h:3+Math.random()*5,
+      col:COLS[Math.floor(Math.random()*COLS.length)],
+      vx:(Math.random()-.5)*5,
+      vy:fromTop ? 2+Math.random()*3 : -5-Math.random()*6,
+      a:Math.random()*Math.PI*2,
+      spin:(Math.random()-.5)*.22,
+      life:1,
+    });
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   FIREWORKS
+════════════════════════════════════════════════════════ */
+let fwp=[], fwActive=false;
+function initFireworks(){
+  const canvas=document.getElementById('cFw');
+  const ctx=canvas.getContext('2d');
+  (function loop(){
+    requestAnimationFrame(loop);
+    if(!fwp.length)return;
+    ctx.fillStyle='rgba(0,0,0,.17)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    for(let i=fwp.length-1;i>=0;i--){
+      const p=fwp[i];
+      p.x+=p.vx; p.y+=p.vy; p.vy+=.06; p.vx*=.98; p.life-=p.dec;
+      if(p.life<=0){fwp.splice(i,1);continue;}
+      ctx.save();
+      ctx.globalAlpha=p.life;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*p.life,0,Math.PI*2);
+      ctx.fillStyle=p.col; ctx.shadowColor=p.col; ctx.shadowBlur=8;
+      ctx.fill(); ctx.restore();
+    }
+  })();
+}
+function firework(){
+  const W=window.innerWidth, H=window.innerHeight;
+  const x=80+Math.random()*(W-160);
+  const y=50+Math.random()*(H*.42);
+  const hue=Math.random()*360;
+  const n=55+Math.floor(Math.random()*40);
+  for(let i=0;i<n;i++){
+    const angle=(Math.PI*2/n)*i+Math.random()*.3;
+    const sp=2+Math.random()*5;
+    fwp.push({x,y,
+      vx:Math.cos(angle)*sp, vy:Math.sin(angle)*sp,
+      r:1.8+Math.random()*2.5,
+      col:`hsl(${hue+Math.random()*50},100%,${55+Math.random()*20}%)`,
+      life:1, dec:.012+Math.random()*.012,
+    });
+  }
+}
+function startFireworks(ms){
+  fwActive=true;
+  let gone=0;
+  const go=()=>{
+    if(!fwActive)return;
+    firework();
+    if(Math.random()>.5) setTimeout(firework,210);
+    gone+=750;
+    if(gone<ms) setTimeout(go,700+Math.random()*350);
+    else fwActive=false;
+  };
+  go();
+  setTimeout(()=>{ fwActive=false; },ms);
+}
+
+/* ════════════════════════════════════════════════════════
+   STAGE 1 — LIGHTS
+════════════════════════════════════════════════════════ */
+function doLights(){
+  document.body.classList.add('lit');
+  const ul=document.getElementById('bulbList');
+  const COLS=['#ff4da6','#ffcc00','#00e5ff','#9c27b0',
+              '#ff6b35','#39ff14','#ff1493','#00bfff',
+              '#ffa500','#e040fb','#00e676','#ff6d00'];
+  const n=Math.max(8,Math.floor(window.innerWidth/65));
+  for(let i=0;i<n;i++){
+    const li=document.createElement('li');
+    const col=COLS[i%COLS.length];
+    li.innerHTML=`<div class="bsock"></div>
+      <div class="bglass" style="background:${col};color:${col}"></div>`;
+    li.style.animationDelay=(i*.07)+'s';
+    ul.appendChild(li);
+  }
+  document.getElementById('bulbs').classList.add('on');
+  burst(55);
+}
+
+/* ════════════════════════════════════════════════════════
+   STAGE 2 — DECORATE
+════════════════════════════════════════════════════════ */
+function doDecorate(){
+  const COLS=['#ff4da6','#ffcc00','#00e5ff','#9c27b0','#ff6b35','#39ff14','#ff1493','#00bfff'];
+  const el=document.getElementById('bunting');
+  el.innerHTML='';
+  const n=Math.max(10,Math.floor(window.innerWidth/36));
+  for(let i=0;i<n;i++){
+    const f=document.createElement('div');
+    f.className='flag';
+    f.style.borderTopColor=COLS[i%COLS.length];
+    el.appendChild(f);
+  }
+  document.getElementById('banner').classList.add('on');
+  burst(75);
+}
+
+/* ════════════════════════════════════════════════════════
+   STAGE 3 — BALLOONS
+════════════════════════════════════════════════════════ */
+function doBalloons(){
+  const COLS=['#ff4da6','#ffcc00','#00e5ff','#9c27b0','#ff6b35','#39ff14','#ff1493'];
+  const con=document.getElementById('balloons');
+  con.innerHTML='';
+  let i=0;
+  const iv=setInterval(()=>{
+    if(i>=20){clearInterval(iv);return;}
+    const b=document.createElement('div'); b.className='balloon';
+    const col=COLS[Math.floor(Math.random()*COLS.length)];
+    b.style.left=(4+Math.random()*92)+'%';
+    b.style.animationDuration=(4.5+Math.random()*5.5)+'s';
+    b.style.animationDelay=(i*.17)+'s';
+    b.innerHTML=`<div class="bBody" style="background:${col};border-top-color:${col}"></div>
+      <div class="bKnot" style="background:${col}"></div>
+      <div class="bStr"></div>`;
+    con.appendChild(b);
+    i++;
+  },160);
+  burst(35);
+}
+
+/* ════════════════════════════════════════════════════════
+   STAGE 4 — REVEAL CAKE
+════════════════════════════════════════════════════════ */
+function doRevealCake(){
+  document.getElementById('cakeScene').classList.add('on');
+  burst(80);
+
+  // Hide the main button — interactive phases take over
+  btnWrap.style.opacity = '0';
+  btnWrap.style.pointerEvents = 'none';
+
+  // After cake entrance, start blow-candles phase
+  setTimeout(startBlowCandlesPhase, 1000);
+}
+
+/* ════════════════════════════════════════════════════════
+   INTERACTIVE PHASE A — BLOW THE CANDLES
+════════════════════════════════════════════════════════ */
+function startBlowCandlesPhase(){
+  const blowNote = document.getElementById('blowNote');
+  blowNote.classList.add('on');
+
+  let blown = 0;
+  // Target the CANDLE divs (large hit area), not the tiny flame
+  const candles = Array.from(document.querySelectorAll('.candle'));
+  const total   = candles.length;
+
+  candles.forEach(candle => {
+    const flame = candle.querySelector('.flame');
+    candle.classList.add('interactive');
+
+    const blow = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if(candle.classList.contains('done')) return; // guard double-fire
+      candle.classList.add('done');
+      candle.classList.remove('interactive');
+
+      // Blow out the flame
+      flame.classList.add('blown');
+
+      // Mini confetti burst at flame position
+      const r = flame.getBoundingClientRect();
+      burst(22, r.left + r.width / 2, r.top + r.height / 2);
+
+      blown++;
+      if(blown >= total){
+        blowNote.classList.remove('on');
+        // Show the button again — now labelled "Open Memories"
+        setTimeout(()=>{
+          bIcon.textContent  = '💌';
+          bLabel.textContent = 'Open Memories';
+          btnWrap.style.opacity      = '1';
+          btnWrap.style.pointerEvents = '';
+          btnWrap.style.display       = '';
+          // Wire up a one-shot click for this stage
+          btn.addEventListener('click', ()=>{
+            btnWrap.style.opacity = '0';
+            btnWrap.style.pointerEvents = 'none';
+            doMemories();
+          }, { once: true });
+        }, 700);
+      }
+    };
+
+    // Use both click AND touchend for maximum compatibility
+    candle.addEventListener('click',    blow);
+    candle.addEventListener('touchend', blow, { passive: false });
+  });
+}
+
+/* ════════════════════════════════════════════════════════
+   STAGE 5 — MEMORIES
+════════════════════════════════════════════════════════ */
+function doMemories(){
+  const mem=document.getElementById('memories');
+  mem.classList.add('on');
+  document.querySelectorAll('.mCard').forEach((c,i)=>{
+    setTimeout(()=>c.classList.add('on'), 300+i*150);
+  });
+  document.getElementById('memClose').addEventListener('click',()=>{
+    mem.classList.remove('on');
+    // Show Grand Finale button
+    setTimeout(()=>{
+      bIcon.textContent  = '🎆';
+      bLabel.textContent = 'Grand Finale';
+      btnWrap.style.opacity      = '1';
+      btnWrap.style.pointerEvents = '';
+      btnWrap.style.display       = '';
+      btn.addEventListener('click', ()=>{
+        btnWrap.style.opacity = '0';
+        setTimeout(()=> btnWrap.style.display='none', 600);
+        doFinale();
+      }, { once: true });
+    }, 400);
+  },{once:true});
+}
+
+/* ════════════════════════════════════════════════════════
+   STAGE 7 — FINALE
+════════════════════════════════════════════════════════ */
+function doFinale(){
+  document.getElementById('memories').classList.remove('on');
+  document.getElementById('finale').classList.add('on');
+  startFireworks(14000);
+  burst(180);
+  setTimeout(()=>burst(120), 1600);
+  setTimeout(()=>burst(100), 3200);
+}
+</script>
+</body>
+</html>
