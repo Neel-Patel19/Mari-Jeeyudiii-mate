@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Happy Birthday JEEYA! 🎂</title>
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&family=Quicksand:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
 <style>
 /* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -22,6 +22,7 @@
   --fun:'Pacifico',cursive;
   --ice:'Dancing Script',cursive;
   --body:'Quicksand',sans-serif;
+  --serif:'Lora',serif;
 }
 
 html,body{
@@ -49,7 +50,7 @@ body.lit{background:var(--bg1)}
   justify-content: center;
   text-align: center;
   font-family: var(--body);
-  cursor: auto; /* Bring back cursor for the input */
+  cursor: auto;
 }
 #cdTitle {
   font-family: var(--fun);
@@ -278,19 +279,18 @@ canvas{position:fixed;inset:0;pointer-events:none}
 }
 
 /* ══════════════════════════════════
-   CAKE  (top → bottom in DOM)
+   CAKE
 ══════════════════════════════════ */
 #cake{
   display:flex;flex-direction:column;align-items:center;
   position:relative;
 }
 
-/* — candles row (topmost) — */
 .candleRow{display:flex;gap:8px;margin-bottom:0;position:relative;z-index:10}
 .candle{
   display:flex;flex-direction:column;align-items:center;
   width:13px;
-  pointer-events:none; /* default off; JS adds .interactive to enable */
+  pointer-events:none;
 }
 .candleBody{width:12px;height:36px;border-radius:3px;flex-shrink:0}
 .c1 .candleBody{background:linear-gradient(#ff6b6b,#c0392b)}
@@ -315,7 +315,6 @@ canvas{position:fixed;inset:0;pointer-events:none}
   to  {transform:scaleY(.7) skewX(7deg);opacity:.8}
 }
 
-/* — tiers (narrow → wide down the DOM) — */
 .tier{
   position:relative;border-radius:7px;
   display:flex;align-items:center;justify-content:center;
@@ -344,7 +343,6 @@ canvas{position:fixed;inset:0;pointer-events:none}
   flex-shrink:0;
 }
 
-/* — frosting drips between tiers — */
 .drips{
   position:absolute;bottom:-11px;left:0;right:0;
   display:flex;justify-content:space-evenly;
@@ -355,7 +353,6 @@ canvas{position:fixed;inset:0;pointer-events:none}
   border-radius:0 0 8px 8px;flex-shrink:0;
 }
 
-/* — JEEYA name in icing — */
 .cakeName{
   font-family:var(--ice);
   font-size:1.55rem;font-weight:700;
@@ -369,7 +366,6 @@ canvas{position:fixed;inset:0;pointer-events:none}
   to  {text-shadow:0 0 14px rgba(255,210,255,1),0 0 30px rgba(255,140,220,.9),0 0 44px rgba(200,0,180,.4)}
 }
 
-/* — polka dots — */
 .dots{display:flex;gap:10px;align-items:center;position:absolute}
 .dot{
   width:9px;height:9px;border-radius:50%;
@@ -377,7 +373,6 @@ canvas{position:fixed;inset:0;pointer-events:none}
   box-shadow:0 0 4px rgba(255,255,255,.6);
 }
 
-/* ── cake shake on cut ── */
 @keyframes shake{
   0%,100%{transform:translateX(0)}
   15%{transform:translateX(-8px) rotate(-1.5deg)}
@@ -388,28 +383,24 @@ canvas{position:fixed;inset:0;pointer-events:none}
 }
 #cake.shaking{animation:shake .55s ease forwards}
 
-/* ── blown flame ── */
 .flame{
   transition: transform .35s ease, opacity .35s ease;
 }
 .flame.blown{
-  animation: none !important;   /* stop cFlicker fighting transform */
+  animation: none !important;
   transform: scale(0) !important;
   opacity: 0 !important;
   pointer-events: none !important;
 }
 
-/* ── candle becomes the tap target ── */
 .candle.interactive{
   cursor: pointer;
   pointer-events: auto !important;
-  /* large invisible tap zone so it's easy to hit */
   padding: 18px 14px;
   margin: -18px -14px;
   position: relative;
   z-index: 30;
 }
-/* pulsing glow ring so she knows it's tappable */
 .candle.interactive .flame{
   filter: drop-shadow(0 0 9px #ffcc00) drop-shadow(0 0 18px #ff8c00);
   animation: cFlicker .55s ease-in-out infinite alternate,
@@ -420,7 +411,6 @@ canvas{position:fixed;inset:0;pointer-events:none}
   50%    { filter: drop-shadow(0 0 18px #fff700) drop-shadow(0 0 30px #ff4400); }
 }
 
-/* ── instruction notes ── */
 #blowNote {
   position:absolute;
   bottom:-60px;
@@ -493,7 +483,6 @@ canvas{position:fixed;inset:0;pointer-events:none}
 .mCard.on{transform:rotate(var(--r,0deg)) scale(1);opacity:1}
 .mCard:hover{transform:rotate(var(--r,0deg)) scale(1.05)!important}
 
-/* ── photo slot at the top of each card ── */
 .mPhoto{
   display:block;
   width:100%;
@@ -502,7 +491,6 @@ canvas{position:fixed;inset:0;pointer-events:none}
   border-radius:10px 10px 0 0;
   background:rgba(0,0,0,.12);
 }
-/* shown when no real src is provided yet */
 .mPhoto[src=""],
 .mPhoto:not([src]){
   background: repeating-linear-gradient(
@@ -523,6 +511,242 @@ canvas{position:fixed;inset:0;pointer-events:none}
 .mCard p{font-size:.78rem;font-weight:600;line-height:1.5;color:rgba(20,5,40,.85)}
 #memHearts{font-size:1.5rem;letter-spacing:10px;animation:hb 1.9s ease-in-out infinite alternate}
 @keyframes hb{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+
+/* ══════════════════════════════════
+   SPECIAL NOTE
+══════════════════════════════════ */
+#specialNote {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 1, 15, 0.92);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 250;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+  padding: 24px;
+}
+#specialNote.on {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Floating dust particles behind the letter */
+#specialNote::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 30%, rgba(255,77,166,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 80% 70%, rgba(156,39,176,0.1) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 50% 10%, rgba(0,229,255,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.snLetter {
+  position: relative;
+  max-width: 620px;
+  width: 100%;
+  background: linear-gradient(160deg, #1a0a2e 0%, #0f0620 60%, #160830 100%);
+  border: 1px solid rgba(255, 77, 166, 0.25);
+  border-radius: 20px;
+  padding: 52px 52px 44px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 20px 60px rgba(0,0,0,0.7),
+    0 0 80px rgba(255,77,166,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.8s cubic-bezier(0.34,1.56,0.64,1), opacity 0.6s ease;
+  opacity: 0;
+  overflow: hidden;
+}
+
+/* Corner decorative flares */
+.snLetter::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,77,166,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.snLetter::after {
+  content: '';
+  position: absolute;
+  bottom: -50px; left: -50px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(156,39,176,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#specialNote.on .snLetter {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* Wax seal top */
+.snSeal {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #ff6ec4, #c2185b 60%, #880e4f);
+  box-shadow: 0 4px 16px rgba(194,24,91,0.6), 0 0 0 3px rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  z-index: 2;
+}
+
+/* Divider line */
+.snDivider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,77,166,0.4), rgba(0,229,255,0.3), transparent);
+  margin: 18px 0;
+}
+
+/* Header */
+.snHeader {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.snTo {
+  font-family: var(--ice);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+  background: linear-gradient(120deg, #ff9de2, #ffcc00, #c3a7ff);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+.snDate {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+  font-family: var(--body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Body paragraphs */
+.snBody {
+  font-family: var(--serif);
+  font-size: clamp(0.92rem, 2vw, 1.05rem);
+  line-height: 1.88;
+  color: rgba(255, 255, 255, 0.82);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+.snBody p {
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.snBody p.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Highlighted words */
+.snBody em {
+  font-style: normal;
+  color: #ffb3d9;
+  font-weight: 600;
+}
+
+/* Sign-off */
+.snSignoff {
+  text-align: right;
+  margin-top: 22px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s ease 1.2s, transform 0.6s ease 1.2s;
+}
+.snSignoff.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.snSignoffLine {
+  font-family: var(--ice);
+  font-size: 1.5rem;
+  color: var(--p1);
+  filter: drop-shadow(0 0 8px rgba(255,77,166,0.5));
+}
+.snSignoffSub {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+/* Footer button */
+.snFooter {
+  text-align: center;
+  margin-top: 32px;
+  opacity: 0;
+  transition: opacity 0.6s ease 1.8s;
+}
+.snFooter.revealed {
+  opacity: 1;
+}
+.snContinueBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 34px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--p1), var(--p4));
+  color: #fff;
+  font-family: var(--body);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 22px rgba(255,77,166,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.snContinueBtn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 30px rgba(255,77,166,0.65);
+}
+.snContinueBtn:active { transform: scale(0.95); }
+
+/* Floating hearts inside the letter */
+.snHeart {
+  position: absolute;
+  font-size: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  animation: floatHeart linear infinite;
+}
+@keyframes floatHeart {
+  0%   { opacity: 0;   transform: translateY(0)    scale(0.6); }
+  15%  { opacity: 0.5; }
+  85%  { opacity: 0.3; }
+  100% { opacity: 0;   transform: translateY(-200px) scale(1.2); }
+}
+
+@media(max-width:560px){
+  .snLetter { padding: 44px 28px 36px; }
+}
 
 /* ══════════════════════════════════
    FINALE
@@ -599,7 +823,6 @@ canvas{position:fixed;inset:0;pointer-events:none}
 <div id="balloons"></div>
 
 <div id="cakeScene">
-
   <div id="cake">
     <div class="candleRow">
       <div class="candle c1"><div class="flame"></div><div class="candleBody"></div></div>
@@ -643,12 +866,14 @@ canvas{position:fixed;inset:0;pointer-events:none}
     </div>
 
     <div class="plate"></div>
-  </div><div id="blowNote">
+  </div>
+  <div id="blowNote">
     <span class="noteIcon">🕯️</span>
     Touch each flame to blow it out!
   </div>
+</div>
 
-</div><div id="memories">
+<div id="memories">
   <button id="memClose">✕  Skip to Finale</button>
   <h2 id="memTitle">💛 A Little Note for JEEYA 💛</h2>
   <div id="memGrid">
@@ -698,6 +923,47 @@ canvas{position:fixed;inset:0;pointer-events:none}
   <div id="memHearts">💖 💛 💜 💙 💚 🧡</div>
 </div>
 
+<!-- ══ SPECIAL NOTE ══ -->
+<div id="specialNote">
+  <div class="snLetter">
+    <div class="snSeal">💌</div>
+
+    <div class="snHeader">
+      <div class="snTo">Dear Jeeya,</div>
+      <div class="snDate">A letter written from the heart · September 2026</div>
+    </div>
+
+    <div class="snDivider"></div>
+
+    <div class="snBody">
+      <p>I don't think words will ever fully do justice to what I want to say, but I'm going to try anyway — because you deserve every single one of them.</p>
+      <p>You have this <em>rare, quiet kind of magic</em> about you. The way you care about people, the way you make them feel <em>seen and heard</em> without even trying — that's not something everyone has. That's just you.</p>
+      <p>I've watched you navigate life with so much <em>grace and strength</em>, even when things weren't easy. And every single time, you came out shining brighter than before. I hope you know how <em>proud</em> I am of the person you've grown into.</p>
+      <p>On this birthday, I hope you give yourself the same kindness you so <em>freely give to everyone else</em>. You deserve all the joy, all the love, and every good thing this world has to offer — today and always.</p>
+      <p>Thank you for being exactly who you are. <em>Never change that.</em> 🌸</p>
+    </div>
+
+    <div class="snDivider"></div>
+
+    <div class="snSignoff">
+      <div class="snSignoffLine">With all my love ✨</div>
+      <div class="snSignoffSub">Always yours · forever rooting for you</div>
+    </div>
+
+    <div class="snFooter">
+      <button class="snContinueBtn" id="snContinueBtn">
+        <span>🎆</span> Grand Finale
+      </button>
+    </div>
+
+    <!-- Floating hearts -->
+    <span class="snHeart" style="left:8%;bottom:10%;animation-duration:6s;animation-delay:0s;">💖</span>
+    <span class="snHeart" style="left:88%;bottom:15%;animation-duration:7s;animation-delay:1.2s;">💛</span>
+    <span class="snHeart" style="left:22%;bottom:5%;animation-duration:8s;animation-delay:2.5s;">💜</span>
+    <span class="snHeart" style="left:70%;bottom:8%;animation-duration:5.5s;animation-delay:0.8s;">💙</span>
+  </div>
+</div>
+
 <div id="finale">
   <div id="fName">JEEYA</div>
   <div id="fSub">May your each and every wish finally come true ✨🤞🏻</div>
@@ -716,7 +982,6 @@ canvas{position:fixed;inset:0;pointer-events:none}
 /* ════════════════════════════════════════════════════════
    COUNTDOWN & PASSWORD LOGIC
 ════════════════════════════════════════════════════════ */
-// Target: Sept 1st, 2026, 00:00:00 IST (+05:30)
 const targetDate = new Date('2026-09-01T00:00:00+05:30').getTime();
 const overlay = document.getElementById('countdownOverlay');
 const passInput = document.getElementById('cdPass');
@@ -731,7 +996,6 @@ let countdownInterval;
 
 function unlockSite() {
   overlay.style.display = 'none';
-  // Restore the custom cursor behavior once unlocked
   document.body.style.cursor = 'none';
   if (countdownInterval) clearInterval(countdownInterval);
 }
@@ -784,7 +1048,7 @@ const bLabel  = document.getElementById('bLabel');
 const bIcon   = btn.querySelector('.bi');
 
 btn.addEventListener('click', () => {
-  if (step > STEPS.length) return; // later stages use their own one-shot listeners
+  if (step > STEPS.length) return;
   if (step === 0) { doLights(); }
   else            { STEPS[step - 1].fn(); }
   step++;
@@ -861,13 +1125,11 @@ function initCursor(){
   (function loop(){
     requestAnimationFrame(loop);
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    // draw cursor dot
     ctx.beginPath();
     ctx.arc(mx,my,5,0,Math.PI*2);
     ctx.fillStyle='rgba(255,77,166,.9)';
     ctx.shadowColor='#ff4da6'; ctx.shadowBlur=10;
     ctx.fill(); ctx.shadowBlur=0;
-    // sparks
     for(let i=sparks.length-1;i>=0;i--){
       const s=sparks[i];
       s.x+=s.vx; s.y+=s.vy; s.vy+=.06; s.life-=.032; s.r*=.97;
@@ -1052,11 +1314,9 @@ function doRevealCake(){
   document.getElementById('cakeScene').classList.add('on');
   burst(80);
 
-  // Hide the main button — interactive phases take over
   btnWrap.style.opacity = '0';
   btnWrap.style.pointerEvents = 'none';
 
-  // After cake entrance, start blow-candles phase
   setTimeout(startBlowCandlesPhase, 1000);
 }
 
@@ -1068,7 +1328,6 @@ function startBlowCandlesPhase(){
   blowNote.classList.add('on');
 
   let blown = 0;
-  // Target the CANDLE divs (large hit area), not the tiny flame
   const candles = Array.from(document.querySelectorAll('.candle'));
   const total   = candles.length;
 
@@ -1079,28 +1338,24 @@ function startBlowCandlesPhase(){
     const blow = (e) => {
       e.preventDefault();
       e.stopPropagation();
-      if(candle.classList.contains('done')) return; // guard double-fire
+      if(candle.classList.contains('done')) return;
       candle.classList.add('done');
       candle.classList.remove('interactive');
 
-      // Blow out the flame
       flame.classList.add('blown');
 
-      // Mini confetti burst at flame position
       const r = flame.getBoundingClientRect();
       burst(22, r.left + r.width / 2, r.top + r.height / 2);
 
       blown++;
       if(blown >= total){
         blowNote.classList.remove('on');
-        // Show the button again — now labelled "Open Memories"
         setTimeout(()=>{
           bIcon.textContent  = '💌';
           bLabel.textContent = 'Open Memories';
           btnWrap.style.opacity      = '1';
           btnWrap.style.pointerEvents = '';
           btnWrap.style.display       = '';
-          // Wire up a one-shot click for this stage
           btn.addEventListener('click', ()=>{
             btnWrap.style.opacity = '0';
             btnWrap.style.pointerEvents = 'none';
@@ -1110,7 +1365,6 @@ function startBlowCandlesPhase(){
       }
     };
 
-    // Use both click AND touchend for maximum compatibility
     candle.addEventListener('click',    blow);
     candle.addEventListener('touchend', blow, { passive: false });
   });
@@ -1127,20 +1381,37 @@ function doMemories(){
   });
   document.getElementById('memClose').addEventListener('click',()=>{
     mem.classList.remove('on');
-    // Show Grand Finale button
-    setTimeout(()=>{
-      bIcon.textContent  = '🎆';
-      bLabel.textContent = 'Grand Finale';
-      btnWrap.style.opacity      = '1';
-      btnWrap.style.pointerEvents = '';
-      btnWrap.style.display       = '';
-      btn.addEventListener('click', ()=>{
-        btnWrap.style.opacity = '0';
-        setTimeout(()=> btnWrap.style.display='none', 600);
-        doFinale();
-      }, { once: true });
-    }, 400);
+    // Show Special Note next
+    setTimeout(doSpecialNote, 400);
   },{once:true});
+}
+
+/* ════════════════════════════════════════════════════════
+   STAGE 6 — SPECIAL NOTE
+════════════════════════════════════════════════════════ */
+function doSpecialNote() {
+  const noteEl = document.getElementById('specialNote');
+  noteEl.classList.add('on');
+
+  // Staggered paragraph reveals
+  const paras = noteEl.querySelectorAll('.snBody p');
+  paras.forEach((p, i) => {
+    setTimeout(() => p.classList.add('revealed'), 500 + i * 320);
+  });
+
+  // Sign-off reveal
+  const signoff = noteEl.querySelector('.snSignoff');
+  setTimeout(() => signoff.classList.add('revealed'), 500 + paras.length * 320);
+
+  // Footer button reveal
+  const footer = noteEl.querySelector('.snFooter');
+  setTimeout(() => footer.classList.add('revealed'), 500 + paras.length * 320 + 400);
+
+  // Wire up the "Grand Finale" button inside the note
+  document.getElementById('snContinueBtn').addEventListener('click', () => {
+    noteEl.classList.remove('on');
+    setTimeout(doFinale, 500);
+  }, { once: true });
 }
 
 /* ════════════════════════════════════════════════════════
